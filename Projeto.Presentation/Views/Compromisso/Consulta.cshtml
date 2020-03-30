@@ -1,0 +1,78 @@
+﻿@model List<Projeto.Data.Entities.Compromisso>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Consulta</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card card-body bg-dark text-white">
+            <h1>Compromissos</h1>
+            <br />
+            <p>Consulta de compromissos</p>
+        </div>
+
+        <hr />
+        <a href="/Home/Index" class="btn btn-primary">Voltar</a>
+
+        <br />
+        <br />
+
+        <strong>@TempData["Mensagem"]</strong>
+
+        <br />
+        <br />
+
+        <table class="table table-bordered">
+
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome do compromisso</th>
+                    <th>Localidade</th>
+                    <th>Data e hora</th>
+                    <th>Descrição</th>
+                    <th>Operações</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.IdCompromisso</td>
+                    <td>@item.Nome</td>
+                    <td>@item.Localidade</td>
+                    <td>@item.DataHora</td>
+                    <td>@item.Descricao</td>
+                    <td class="text-center">
+                        <a href="/Compromisso/Edicao/@item.IdCompromisso" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="/Compromisso/Exclusao/@item.IdCompromisso" class="btn btn-danger btn-sm" onclick="return ConfirmarExclusao();">Excluir</a>
+                    </td>
+                </tr>
+            }
+            <tbody></tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="6">Compromissos cadastrados: @Model.Count</td>
+                </tr>
+            </tfoot>
+
+        </table>
+
+    </div>
+
+
+    <script src="~/js/jquery-3.4.1.min.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+
+    <script>
+        function ConfirmarExclusao() {
+            window.confirm('Deseja realmente excluir esse compromisso?')
+        }
+    </script>
+</body>
+</html>

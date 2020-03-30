@@ -1,0 +1,61 @@
+﻿@model Projeto.Presentation.Models.EditarCompromissoModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Cadastro</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card card-body bg-dark text-white">
+            <h1>Compromissos</h1>
+            <br />
+            <p>Edição de compromissos</p>
+        </div>
+
+        <hr />
+        <a href="/Compromisso/Consulta" class="btn btn-primary">Voltar</a>
+        <br />
+        <br />
+
+        <div class="text-danger">
+            @Html.ValidationSummary()
+        </div>
+
+        <form action="/Compromisso/Edicao" method="post">
+
+            @Html.HiddenFor(model => model.IdCompromisso)
+
+            <label>Nome do compromisso</label>
+            @Html.TextBoxFor(model => model.Nome,
+           new {@placeholder="Nome", @class="form-control col-md-4"})
+
+            <label>Localidade</label>
+            @Html.TextBoxFor(model => model.Localidade,
+           new {@placeholder="Localidade", @class="form-control col-md-4"})
+
+            <label>Data e hora</label>
+            @Html.TextBoxFor(model => model.DataHora,
+           new {@placeholder="00/00/0000 00:00", @class="form-control col-md-4"})
+
+            <label>Descrição</label>
+            @Html.TextBoxFor(model => model.Descricao,
+           new {@placeholder="Descrição", @class="form-control col-md-4"})
+
+            <br />
+
+            <input type="submit" value="Salvar alterações" class="btn btn-dark" />
+        </form>
+
+        <strong>@TempData["Mensagem"]</strong>
+
+    </div>
+
+
+    <script src="~/js/jquery-3.4.1.min.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+</body>
+</html>
